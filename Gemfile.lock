@@ -141,6 +141,8 @@ GEM
     nokogiri (1.18.1-x86_64-linux-gnu)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    pg (1.5.9)
+    pg (1.5.9-x64-mingw-ucrt)
     psych (5.2.2)
       date
       stringio
@@ -249,6 +251,7 @@ DEPENDENCIES
   devise (~> 4.9)
   importmap-rails
   jbuilder
+  pg (~> 1.5)
   puma (~> 5.0)
   rails (~> 7.0.8, >= 7.0.8.7)
   selenium-webdriver
