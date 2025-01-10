@@ -1,0 +1,24 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <h1>Blog App</h1>
+    <div>
+      <% @blog_posts.each do |blog| %>
+        <!-- before what was done is
+        (1) "/blog_posts/#{blog.id}
+        (2) blog_post_path(blog.id)
+        (3) blog_post_path(blog)
+        (4) blog
+        You can do this because Ruby maintains model_name for each models
+        so it just uses it to check if that name exists and tries to call that path
+        so it's important to give correct names for path-->
+        <h2><%= link_to blog.title, blog %></h2>
+        <p><%= blog.body %></p>
+      <% end %>
+    </div>
+    <div>
+      <h2><%= link_to "Create New Blog", new_blog_post_path if user_signed_in? %></h2>
+    </div>
+  </body>
+</html>
