@@ -4,7 +4,7 @@ class BlogPostsController < ApplicationController
   before_action :set_blog_post, except: [:index, :new, :create]
   
   def index
-    @blog_posts = BlogPost.all
+    @blog_posts = user_signed_in? ? BlogPost.sorted : BlogPost.published.sorted
   end
 
   def show
@@ -16,6 +16,7 @@ class BlogPostsController < ApplicationController
 
   def create
     @blog_post = BlogPost.new(blog_post_params)
+    change_time_zone
     if @blog_post.save
       redirect_to @blog_post
     else
@@ -27,6 +28,7 @@ class BlogPostsController < ApplicationController
   end
 
   def update
+    change_time_zone
     if @blog_post.update(blog_post_params)
       redirect_to @blog_post
     else
@@ -42,13 +44,19 @@ class BlogPostsController < ApplicationController
   private
   
   def blog_post_params
-    params.require(:blog_post).permit(:title, :body)
+    params.require(:blog_post).permit(:title, :body, :published_at)
   end
 
   def set_blog_post
-    @blog_post = BlogPost.find(params[:id])
+    @blog_post = user_signed_in? ? BlogPost.find(params[:id]) : BlogPost.published.find(params[:id])
   rescue ActiveRecord::RecordNotFound
     redirect_to root_path
+  end
+
+  def change_time_zone
+    if @blog_post.published_at.present?
+      @blog_post.published_at = Time.zone.local(@blog_post.published_at.year, @blog_post.published_at.month, @blog_post.published_at.day, @blog_post.published_at.hour, @blog_post.published_at.min)
+    end
   end
     
 end

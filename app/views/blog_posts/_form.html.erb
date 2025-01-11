@@ -16,5 +16,10 @@
     <%= form.text_area :body%>
   </div>
 
-  <%= form.submit%>
+  <div>
+    <%= form.label :published_at%>
+    <%= form.datetime_select :published_at, include_blank: true%>
+  </div>
+
+  <%= form.submit "Submit", class: "my-5 p-2 bg-gray-200 hover:bg-gray-300"%>
 <%end%>

@@ -13,7 +13,16 @@
         You can do this because Ruby maintains model_name for each models
         so it just uses it to check if that name exists and tries to call that path
         so it's important to give correct names for path-->
-        <h2><%= link_to blog.title, blog %></h2>
+        <% if blog.draft? %>
+          <div class="p-2 rounded bg-gray-100 test-gray-900">Draft</div>
+        <% elsif blog.scheduled? %>
+          <div class="p-2 rounded bg-blue-100 test-gray-900">Scheduled</div>
+        <% else %>
+          <% if user_signed_in? %>
+            <div class="p-2 rounded bg-yellow-100 test-gray-900">Published</div>
+          <% end %>
+        <% end %>
+        <h2 class="my-2"><%= link_to blog.title, blog %></h2>
         <p><%= blog.body %></p>
       <% end %>
     </div>
