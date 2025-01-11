@@ -6,19 +6,19 @@ class BlogPost < ApplicationRecord
   # or else it wold take the current time as when the rails app booted up
   scope :sorted, -> {order(published_at: :desc, updated_at: :desc)}
   scope :draft, -> {where(published_at: nil)}
-  scope :published, -> {where("published_at <= ?", Time.zone.now)}
-  scope :scheduled, -> {where("published_at > ?", Time.zone.now)}
+  scope :published, -> {where("published_at <= ?", Time.current)}
+  scope :scheduled, -> {where("published_at > ?", Time.current)}
 
   def draft?
     published_at.nil?
   end
 
   def published?
-    published_at? && published_at <= Time.zone.now
+    published_at? && published_at <= Time.current
   end
 
   def scheduled?
-    published_at? && published_at > Time.zone.now
+    published_at? && published_at > Time.current
   end
 
 end

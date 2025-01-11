@@ -5,4 +5,4 @@
 <h1>Edit Blog Post</h1>
 
 <%= render partial: "form", locals: {blog_post: @blog_post} %>
-<%= button_to "Delete", @blog_post, method: :delete, data: {turbo_confirm: "Are you sure?"}, class: "p-2 bg-gray-200 hover:bg-gray-300" %>
+<%= button_to "Delete", @blog_post, method: :delete, data: {turbo_confirm: "Are you sure?"}, class: "p-2 rounded bg-gray-200 hover:bg-gray-300" %>
