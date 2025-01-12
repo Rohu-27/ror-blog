@@ -37,10 +37,12 @@ development:
   username: "postgres"
   password: "root"
 
-# test:
-#   <<: *default
-#   database: blog
-# ​
+test:
+  <<: *default
+  database: blog_test
+  username: "postgres"
+  password: "root"
+
 production:
   <<: *default
   database: blog_production

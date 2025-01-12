@@ -73,3 +73,9 @@ gem "devise", "~> 4.9"
 gem "tailwindcss-rails", "~> 3.1"
 
 gem "pg", "~> 1.5"
+
+gem "bigdecimal", "~> 3.1"
+
+gem "mutex_m", "~> 0.3.0"
+
+gem "drb", "~> 2.2"
