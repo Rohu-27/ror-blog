@@ -1,7 +1,7 @@
 <%= render partial: "home"%>
 <div>
   <h1><%= @blog_post.title %></h1>
-  <%= @blog_post.body %>
+  <%= @blog_post.content %>
   <% unless @blog_post.published_at.nil?%>
     <p><b>Published on: </b><%= @blog_post.published_at.strftime("%B %d, %Y %I:%M %p")%></p>
   <% end %>

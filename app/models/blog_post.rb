@@ -1,6 +1,8 @@
 class BlogPost < ApplicationRecord
+  has_rich_text :content
+  has_one_attached :image
   validates :title, presence: true
-  validates :body, presence: true
+  validates :content, presence: true
 
   # lambda is used so that whenever a request is made we check with the current time
   # or else it wold take the current time as when the rails app booted up
