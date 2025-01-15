@@ -11,3 +11,8 @@ user.update!(
   password: "password",
   password_confirmation: "password"
 )
+
+99.times do |index|
+  blog_post = BlogPost.where(title: "Blog Post #{index+1}").first_or_initialize
+  blog_post.update!(content: "In hac habitasse platea dictumst. Praesent dui lacus, pellentesque in ligula quis, maximus pretium diam. Ut hendrerit pharetra odio, vitae pretium mauris mollis eu. Curabitur porta iaculis aliquet. In dignissim, felis mattis imperdiet imperdiet, tellus sapien dapibus sem, vel ullamcorper augue purus vel eros. Proin faucibus blandit nunc sit amet lobortis. Integer nisi est, ornare ut sodales tempus, fringilla id purus. Nunc ante turpis, consequat et condimentum ac, gravida vel tortor. In ac nibh orci. Maecenas vitae ante quis orci tincidunt fermentum. Duis efficitur porta dolor, sed condimentum justo rutrum id. Ut id ipsum ornare, lobortis lacus in, mollis dui.", published_at: Time.current)
+end

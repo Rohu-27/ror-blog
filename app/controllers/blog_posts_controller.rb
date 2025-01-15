@@ -2,12 +2,15 @@ class BlogPostsController < ApplicationController
 
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_blog_post, except: [:index, :new, :create]
+  Pagy::DEFAULT[:limit] = 10
   
   def index
     @blog_posts = user_signed_in? ? BlogPost.sorted : BlogPost.published.sorted
+    @pagy, @blog_posts = pagy(@blog_posts)
   end
 
   def show
+    @page = params[:page] || 1
   end
 
   def new
@@ -24,6 +27,7 @@ class BlogPostsController < ApplicationController
   end
 
   def edit
+    @page = params[:page] || 1
   end
 
   def update

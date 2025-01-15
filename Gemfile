@@ -81,3 +81,5 @@ gem "mutex_m", "~> 0.3.0"
 gem "drb", "~> 2.2"
 
 gem 'ruby-vips', '~> 2.2', '>= 2.2.2'
+
+gem "pagy", "~> 9.3"

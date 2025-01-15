@@ -6,7 +6,7 @@ class BlogPost < ApplicationRecord
   # lambda is used so that whenever a request is made we check with the current time
   # or else it wold take the current time as when the rails app booted up
   # sql sytax for nulls last "Arel.sql("published_at DESC NULLS LAST")"
-  scope :sorted, -> {order(arel_table[:published_at].desc.nulls_last).order(updated_at: :desc)}
+  scope :sorted, -> {order(arel_table[:published_at].desc.nulls_first).order(updated_at: :desc)}
   scope :draft, -> {where(published_at: nil)}
   scope :published, -> {where("published_at <= ?", Time.current)}
   scope :scheduled, -> {where("published_at > ?", Time.current)}

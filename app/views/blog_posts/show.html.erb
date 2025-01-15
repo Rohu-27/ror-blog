@@ -1,11 +1,11 @@
-<div class="container">
-  <div><%= render partial: "home"%></div>
-  <div><h3><%= link_to "Edit", edit_blog_post_path(@blog_post) if user_signed_in?%></h3></div>
+<div class = "container">
+  <div class="bolder my-5 text-xl"><%= link_to "Home", root_path(page: @page) %></div>
+  <div class="bolder my-5 text-xl"><%= link_to "Edit", edit_blog_post_path(@blog_post, page:@page) if user_signed_in?%></div>
 </div>
 <div>
   <h1 class="my-3"><%= @blog_post.title %></h1>
   <% unless @blog_post.published_at.nil?%>
     <p><b>Published on: </b><%= @blog_post.published_at.strftime("%B %d, %Y %I:%M %p")%></p>
   <% end %>
-  <%= @blog_post.content %>
+  <div><%= @blog_post.content %></div>
 </div>

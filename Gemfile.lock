@@ -150,6 +150,7 @@ GEM
     nokogiri (1.18.1-x86_64-linux-gnu)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    pagy (9.3.3)
     pg (1.5.9)
     pg (1.5.9-x64-mingw-ucrt)
     psych (5.2.2)
@@ -265,6 +266,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   mutex_m (~> 0.3.0)
+  pagy (~> 9.3)
   pg (~> 1.5)
   puma (~> 5.0)
   rails (~> 7.0.8, >= 7.0.8.7)
