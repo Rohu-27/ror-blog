@@ -7,6 +7,10 @@ class BlogPostsController < ApplicationController
   def index
     @blog_posts = user_signed_in? ? BlogPost.sorted : BlogPost.published.sorted
     @pagy, @blog_posts = pagy(@blog_posts)
+  rescue Pagy::OverflowError
+    redirect_to root_path(page: 1)
+    # params[:page] = 1
+    # retry
   end
 
   def show
@@ -43,7 +47,7 @@ class BlogPostsController < ApplicationController
     redirect_to root_path
   end
 
-  rescue_from Pagy::OverflowError, with: :redirect_to_last_page
+  # rescue_from Pagy::OverflowError, with: :redirect_to_last_page
 
   private
   
