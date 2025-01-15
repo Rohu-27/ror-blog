@@ -32,7 +32,7 @@ class BlogPostsController < ApplicationController
 
   def update
     if @blog_post.update(blog_post_params)
-      redirect_to @blog_post
+      redirect_to blog_post_path(@blog_post, page: params[:page]), notice: 'Blog post was successfully updated.'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -42,6 +42,8 @@ class BlogPostsController < ApplicationController
     @blog_post.destroy
     redirect_to root_path
   end
+
+  rescue_from Pagy::OverflowError, with: :redirect_to_last_page
 
   private
   
@@ -53,6 +55,10 @@ class BlogPostsController < ApplicationController
     @blog_post = user_signed_in? ? BlogPost.find(params[:id]) : BlogPost.published.find(params[:id])
   rescue ActiveRecord::RecordNotFound
     redirect_to root_path
+  end
+
+  def redirect_to_last_page(exception)
+    redirect_to url_for(page: exception.pagy.last), notice: "Page ##{params[:page]} is overflowing. Showing page #{exception.pagy.last} instead."
   end
     
 end
