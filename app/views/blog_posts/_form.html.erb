@@ -1,4 +1,4 @@
-<%= form_with model: @blog_post, url: blog_post_path(page: @page) do |form|%>
+<%= form_with model: blog_post do |form|%>
   <% if form.object.errors.any?%>
   <div>
     <% form.object.errors.full_messages.each do |message|%>
@@ -9,6 +9,18 @@
   <div>
     <%= form.label :title%>
     <%= form.text_field :title%>
+  </div>
+
+  <div>
+    <%= form.label :cover_image%>
+    <%if blog_post.cover_image.attached?%>
+      <%#rails7 has hotwire which has turbo and using dom_id will let you remove cover image, this is better because other changes done will still remain after removing the image%>
+      <div id="<%= dom_id(blog_post, :cover_image)%>">
+        <%= image_tag blog_post.cover_image, class:"w-1/3 my-2" %>
+        <%= link_to "Remove cover image", blog_post_cover_image_path(blog_post), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+      </div>
+    <%end%>
+    <%= form.file_field :cover_image%>
   </div>
 
   <div>

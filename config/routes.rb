@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   
   #shortcut to create all the resources automatically
-  resources :blog_posts
+  resources :blog_posts do
+    #adding module will let us add this in the blog_posts controller and it should only apply to blog_posts
+    resource :cover_image, only: [:destroy], module: :blog_posts
+  end
 
   # get "/blog_posts/new", to: "blog_posts#new", as: :new_blog_post
   # get "/blog_posts/:id", to: "blog_posts#show", as: :blog_post

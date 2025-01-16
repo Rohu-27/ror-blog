@@ -2,6 +2,7 @@
   <div class="bolder my-5 text-xl"><%= link_to "Home", root_path(page: @page) %></div>
   <div class="bolder my-5 text-xl"><%= link_to "Edit", edit_blog_post_path(@blog_post, page:@page) if user_signed_in?%></div>
 </div>
+<div><%= image_tag @blog_post.cover_image if @blog_post.cover_image.attached? %></div>
 <div>
   <h1 class="my-3"><%= @blog_post.title %></h1>
   <% unless @blog_post.published_at.nil?%>

@@ -34,6 +34,7 @@
             <div class="p-2 rounded bg-yellow-100 test-gray-900">Published</div>
           <% end %>
         <% end %>
+        <div><%= image_tag blog.cover_image, class:"w-2/3 center" if blog.cover_image.attached? %></div>
         <h2 class="my-2"><%= link_to blog.title, blog_post_path(blog, page: @pagy.page) %></h2>
         <p><%= truncate(blog.content.to_plain_text, length: 100) %></p>
       <% end %>

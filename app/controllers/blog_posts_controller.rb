@@ -24,7 +24,7 @@ class BlogPostsController < ApplicationController
   def create
     @blog_post = BlogPost.new(blog_post_params)
     if @blog_post.save
-      redirect_to @blog_post
+      redirect_to @blog_post, notice: 'Blog post was successfully created.'
     else
       render :new, status: :unprocessable_entity 
     end
@@ -36,7 +36,7 @@ class BlogPostsController < ApplicationController
 
   def update
     if @blog_post.update(blog_post_params)
-      redirect_to blog_post_path(@blog_post, page: params[:page]), notice: 'Blog post was successfully updated.'
+      redirect_to @blog_post, notice: 'Blog post was successfully updated.'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -52,7 +52,7 @@ class BlogPostsController < ApplicationController
   private
   
   def blog_post_params
-    params.require(:blog_post).permit(:title, :content, :published_at)
+    params.require(:blog_post).permit(:title, :content, :published_at, :cover_image)
   end
 
   def set_blog_post
